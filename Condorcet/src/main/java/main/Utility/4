@@ -1,0 +1,28 @@
+@FXML
+    void datagroupspane1_delete_function(ActionEvent event)
+    {
+        mydatapane.setVisible(false);
+        mydatapane1.setVisible(false);
+        mydatapane2.setVisible(false);
+        datagroupspane.setVisible(true);
+        datagroupspane1.setVisible(false);
+        datagroupspane2.setVisible(true);
+        datagroupspane3.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+    @FXML
+    void datagrouppane1_add_function(ActionEvent event)
+    {
+        mydatapane.setVisible(true);
+        mydatapane1.setVisible(false);
+        mydatapane2.setVisible(false);
+        datagroupspane.setVisible(true);
+        datagroupspane1.setVisible(false);
+        datagroupspane2.setVisible(false);
+        datagroupspane3.setVisible(true);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }

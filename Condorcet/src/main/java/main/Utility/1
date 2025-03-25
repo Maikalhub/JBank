@@ -1,0 +1,891 @@
+package main.Models.Entities;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import javafx.event.ActionEvent;
+import main.Data.Archive;
+import main.Data.AdminA;
+import main.Data.Groups;
+import main.Data.Works;
+import main.Enums.RequestType;
+import main.Enums.ResponseStatus;
+import main.JDBC.DBConnection;
+import main.JDBC.JDBC;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import main.Models.TCP.Request;
+import main.Models.TCP.Response;
+import main.Utility.ClientSocket;
+
+import javax.swing.*;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.*;
+import java.util.List;
+
+
+public class Admin
+{
+    /// Начальная инициализация данных
+    private Client client;  // Ссылка на клиент
+    private String username;
+    private String password;
+    private Stage primaryStage;  // Ссылка на основной Stage
+
+    // Таблицы //
+    /// Таблица "Данные группы" Сцена "Группа"
+    @FXML
+    private TableView<Groups> my_data_table;
+    @FXML
+    private TableColumn<Groups, Integer> idColumn;
+    @FXML
+    private TableColumn<Groups, String> fioColumn;
+    @FXML
+    private TableColumn<Groups, String> groupNumberColumn;
+    @FXML
+    private TableColumn<Groups, String> rykColumn;
+    /// Таблица "Задачи" Сцена "Задачи"
+    @FXML
+    private TableView<Works> tasks_table;
+    @FXML
+    private TableColumn<Works, Integer> id_column_tasks;
+    @FXML
+    private TableColumn<Works, String> FIO_column_tasks;
+    @FXML
+    private TableColumn<Works, String> number_groups_column_tasks;
+    @FXML
+    private TableColumn<Works, String> ryk_column_tasks;
+    @FXML
+    private TableColumn<Works, String> work_column_tasks;
+    @FXML
+    private TableColumn<Works, String> status_column_tasks;
+    @FXML
+    private TableColumn<Works, Byte> file_column_tasks;
+    @FXML
+    private TableColumn<Works, String> time_file_column_tasks;
+    /// Таблица "Архив" Сцена "Архив"
+    @FXML
+    private TableView<Archive> archive_table;
+    @FXML
+    private TableColumn<Archive, Integer> archive_id;
+    @FXML
+    private TableColumn<Archive, String> archive_FIO;
+    @FXML
+    private TableColumn<Archive, String> archive_number_group;
+    @FXML
+    private TableColumn<Archive, String> archive_ryk;
+    @FXML
+    private TableColumn<Archive, String> archive_work;
+    @FXML
+    private TableColumn<Archive, String> archive_status;
+    @FXML
+    private TableColumn<Archive, String> archive_accepted;
+    @FXML
+    private TableColumn<Archive, String> archive_check;
+    // Таблицы //
+    // ChooseBox //
+    /// ChooseBox    Сцена "Отчеты"
+    @FXML
+    private ChoiceBox<String> report_report_choosebox;
+    // ChooseBox //
+
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @FXML
+    public void groups_delete_1(ActionEvent actionEvent)
+    {
+        // Проверяем, если значения в полях не пустые
+        if (!login1.getText().isEmpty() ||
+                !password1.getText().isEmpty() ||
+                !salary1.getText().isEmpty() ||
+                !post1.getText().isEmpty() ||
+                !status1.getText().isEmpty() ||
+                !group__.getText().isEmpty()) {
+
+            // Если хотя бы одно поле заполнено, очищаем их
+            login1.setText(" ");
+            password1.setText(" ");
+            salary1.setText(" ");
+            post1.setText(" ");
+            status1.setText(" ");
+            //group__.setText(" ");
+
+            // Показать успешное сообщение об очистке данных
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Clear");
+            alert.setHeaderText(null);
+            alert.setContentText("Данные успешно очищены");
+            alert.showAndWait();
+        }
+        else
+        {
+            // Если все поля пустые, показываем предупреждение
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Предупреждение");
+            alert.setHeaderText(null);
+            alert.setContentText("Все поля уже пустые.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void groups_add_11(ActionEvent actionEvent)
+    {
+
+        //System.out.println(client.getLogin());
+
+
+        String login11 = login1.getText();
+        String password11 = password1.getText();
+        String salary11 = salary1.getText();
+        String post11 = post1.getText();
+        String status11 = status1.getText();
+        String groups11 =  group__.getText();
+        // Convert salary to double
+        double salary = 0.0;
+        try {
+            salary = Double.parseDouble(salary11);
+        } catch (NumberFormatException e) {
+            showError("Invalid salary format.");
+            return;
+        }
+
+        // Check if login exists in AdminA table
+        try {
+            if (!checkAdminAExists(login11)) {
+                showError("Login not found in AdminA table.");
+                return;
+            }
+
+            // Check if login exists in AdminID table
+            if (!checkAdminIDExists(login11)) {
+                showError("Login not found in AdminID table.");
+                return;
+            }
+
+            // Update AdminA table
+            int idA = getAdminAId(login11);  // You need to implement this function to get the admin ID from AdminA
+            if (!updateAdminA(idA, login11, password11)) {
+                showError("Failed to update AdminA table.");
+                return;
+            }
+
+            // Update AdminID table
+            int idID = getAdminIDId(login11);  // You need to implement this function to get the admin ID from AdminID
+            if (updateAdminID(idID, login11, post11, post11, status11, "BYR", salary, groups11)) {
+                showError("Failed to update AdminID table.");
+                return;
+            }
+
+            // Success message
+            showSuccess("Data updated successfully!");
+
+        } catch (SQLException e) {
+            showError("Database error: " + e.getMessage());
+        }
+    }
+
+    // Helper methods
+    private void showError(String message) {
+        // Show an error message (this could be an alert or a label update)
+        System.out.println("Error: " + message);
+    }
+
+    private void showSuccess(String message) {
+        // Show a success message (this could be an alert or a label update)
+        System.out.println("Success: " + message);
+    }
+
+    private int getAdminAId(String login) {
+        // Implement logic to get AdminA id by login
+        return 1; // dummy value
+    }
+
+    private int getAdminIDId(String login) {
+        // Implement logic to get AdminID id by login
+        return 1; // dummy value
+    }
+
+    public static boolean checkAdminAExists(String login) throws SQLException {
+        String query = "SELECT COUNT(*) FROM AdminA WHERE login = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, login);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1) > 0;
+        }
+    }
+
+    public static boolean checkAdminIDExists(String login) throws SQLException {
+        String query = "SELECT COUNT(*) FROM AdminID WHERE login = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, login);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1) > 0;
+        }
+    }
+
+    public static boolean updateAdminA(int id, String login, String password) throws SQLException {
+        String query = "UPDATE AdminA SET login = ?, password = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, login);
+            ps.setString(2, password);
+            ps.setInt(3, id);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public static boolean updateAdminID(int id, String login, String fio, String role, String status, String currency, double salary, String groups) throws SQLException {
+        String query = "UPDATE AdminID SET login = ?, fio = ?, role = ?, status = ?, currency = ?, salary = ?, groups = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, login);
+            ps.setString(2, fio);
+            ps.setString(3, role);
+            ps.setString(4, status);
+            ps.setString(5, currency);
+            ps.setDouble(6, salary);
+            ps.setString(7, groups);
+            ps.setInt(8, id);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Сеттеры для логина и пароля
+    public void setLoginData_(String username, String password) throws SQLException
+    {
+
+        System.out.println("------------");
+        this.username = username;
+        this.password = password;
+
+        Client client = new Client();
+
+
+        client.setLogin(username);
+        client.setPassword(password);
+
+
+        System.out.println(client.getLogin());
+        System.out.println(client.getPassword());
+        System.out.println("------------");
+
+
+
+        // Можно обновить UI или другие действия, если нужно
+        // Устанавливаем логин и пароль в поля на UI
+        System.out.println("Данные получены");
+        System.out.println(username);
+        System.out.println(password);
+        // Устанавливаем логин и пароль в поля на UI
+        System.out.println("Устанавливаем значения логина и пароля в сцене");
+        login.setText(username);
+        password_.setText(password);
+        System.out.println("Конец");
+        System.out.println("Данные переданы для добавления в бд");
+        //responce_all_data(username,password);
+        JDBC.connect();
+        get_my_data(username);
+        responce_all_data(username,password);
+        JDBC.close();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Database authorization");
+        alert.setHeaderText(null);
+        alert.setContentText("Данные успешно добавлены");
+        alert.showAndWait();
+    }
+
+
+
+
+    @FXML
+    public void exit(ActionEvent actionEvent)
+    {
+        // Очистить данные пользователя
+        clearUserData();
+
+        // Закрыть текущую сцену
+        Stage currentStage = (Stage) exit.getScene().getWindow(); // Change this to any existing button (like exit_button)
+        currentStage.close();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Back to menu");
+        alert.setHeaderText(null);
+        alert.setContentText("Вы вернулись в меню");
+        alert.showAndWait();
+
+        URL clientFXML = getClass().getResource("/client.fxml");
+        if (clientFXML == null) {
+            System.out.println("Файл client.fxml не найден");
+        } else {
+            FXMLLoader loader = new FXMLLoader(clientFXML);
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+    private void clearUserData()
+    {
+        // Очистим все поля, связанные с пользователем
+        login.setText("");
+        password_.setText("");
+        fio.setText("");
+        post.setText("");
+        salary.setText("");
+        groups.setText("");
+
+        // Можно также сбросить другие поля или данные, если они хранятся в других объектах
+        // Например:
+        my_data_table.getItems().clear();
+        tasks_table.getItems().clear();
+        archive_table.getItems().clear();
+
+    }
+
+    // Метод для получения данных администратора по логину
+    private void get_my_data(String login) throws SQLException {
+        String query = "SELECT * FROM AdminID WHERE Логин = ?";
+        try (PreparedStatement stmt = JDBC.connection.prepareStatement(query)) {
+            stmt.setString(1, login);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Извлекаем данные из ResultSet
+                    String Login = rs.getString("Логин");
+                    String fullName = rs.getString("ФИО");
+                    String dol = rs.getString("Должность");
+                    String status = rs.getString("Статус");
+                    String salary_ = rs.getString("Зарплата");
+                    String numbergroups = rs.getString("НомерГруппы");
+
+                    System.out.println(Login);
+                    System.out.println(fullName);
+                    System.out.println(dol);
+                    System.out.println(status);
+                    System.out.println(salary_);
+                    System.out.println(numbergroups);
+
+                    // Устанавливаем данные в элементы интерфейса
+                    //login_.setText(Login);
+                    fio.setText(fullName);
+                    post.setText(dol);
+                    post_.setText(status);
+                    salary.setText(salary_);
+                    groups.setText(numbergroups);
+
+                    // Загружаем данные о группах после получения информации о пользователе
+                    loadGroups(fullName);
+                    loadTasks(fullName);
+                    loadArchive();
+                } else {
+                    // Если логин не найден, можно отобразить сообщение
+                    showErrorMessage("Пользователь с таким логином не найден.");
+                }
+            }
+        } catch (SQLException e) {
+            // Обработка исключений и логирование ошибок
+            showErrorMessage("Ошибка при получении данных: " + e.getMessage());
+            e.printStackTrace();  // Можно заменить на логирование
+        }
+    }
+
+    // Метод для загрузки групп, возращающих данные о группах
+    private void loadGroups(String fullName) throws SQLException {
+        String query = "SELECT * FROM Groups WHERE Руководитель = ?";  // Запрос для получения групп по руководителю
+
+        try (PreparedStatement stmt = JDBC.connection.prepareStatement(query)) {
+            stmt.setString(1, fullName);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                ObservableList<Groups> groupsData = FXCollections.observableArrayList(); // Создаём список для объектов Groups
+
+                while (rs.next()) {
+                    // Извлекаем данные о группах
+                    int group_Id = rs.getInt("ID");
+                    String FIO_ = rs.getString("ФИО");
+                    String group_number = rs.getString("НомерГруппы");
+                    String ryk = rs.getString("Руководитель");
+
+                    // Создаём объект Groups и добавляем его в список
+                    Groups group = new Groups(group_Id, FIO_, group_number, ryk);
+                    groupsData.add(group);
+                }
+
+                // Устанавливаем данные в таблицу
+                Platform.runLater(() -> my_data_table.setItems(groupsData));
+            }
+        } catch (SQLException e) {
+            // Обработка ошибок запроса
+            showErrorMessage("Ошибка при загрузке групп: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    // Метод для загрузки групп, возращающих данные о группах
+    private void loadTasks(String fullName) throws SQLException {
+        String query = "SELECT * FROM Works WHERE Руководитель = ?";  // Запрос для получения групп по руководителю
+
+        try (PreparedStatement stmt1 = JDBC.connection.prepareStatement(query))
+        {
+            stmt1.setString(1, fullName);
+
+            try (ResultSet rs = stmt1.executeQuery())
+            {
+                ObservableList<Works> works_data = FXCollections.observableArrayList(); // Создаём список для объектов Groups
+
+                while (rs.next())
+                {
+                    // Извлекаем данные о группах
+                    int works_Id = rs.getInt("ID");
+                    String works_FIO = rs.getString("ФИО");
+                    String works_group_number = rs.getString("НомерГруппы");
+                    String works_ryk = rs.getString("Руководитель");
+                    String works = rs.getString("Работа");
+                    String status_works = rs.getString("СтатусРаботы");
+                    String accepted_time = rs.getString("Принято");
+                    String check_time = rs.getString("Проверено");
+
+                    // Создаём объект Groups и добавляем его в список
+                    Works works1 = new Works(works_Id, works_FIO, works_group_number, works_ryk,works, status_works, accepted_time, check_time );
+                    works_data.add(works1);
+                }
+
+                // Устанавливаем данные в таблицу
+                Platform.runLater(() -> tasks_table.setItems(works_data));
+            }
+        } catch (SQLException e) {
+            // Обработка ошибок запроса
+            showErrorMessage("Ошибка при загрузке групп: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    // Метод для загрузки групп, возращающих данные о группах
+    private void loadArchive() throws SQLException {
+        String query = "SELECT * FROM Archive";  // Запрос для получения групп по руководителю
+
+        try (PreparedStatement stmt1 = JDBC.connection.prepareStatement(query))
+        {
+
+            try (ResultSet rs = stmt1.executeQuery())
+            {
+                ObservableList<Archive> archive_data = FXCollections.observableArrayList(); // Создаём список для объектов Groups
+
+                while (rs.next())
+                {
+                    // Извлекаем данные о группах
+                    int works_Id2 = rs.getInt("ID");
+                    String works_FIO2 = rs.getString("ФИО");
+                    String works_group_number2 = rs.getString("НомерГруппы");
+                    String works_ryk2 = rs.getString("Руководитель");
+                    String works2 = rs.getString("Работа");
+                    String status_works2 = rs.getString("СтатусРаботы");
+                    String accepted_time2 = rs.getString("Принято");
+                    String check_time2 = rs.getString("Проверено");
+
+                    // Создаём объект Groups и добавляем его в список
+                    Archive archive1 = new Archive(works_Id2, works_FIO2, works_group_number2, works_ryk2,works2, status_works2, accepted_time2, check_time2 );
+                    archive_data.add(archive1);
+                }
+
+                // Устанавливаем данные в таблицу
+                Platform.runLater(() -> archive_table.setItems(archive_data));
+            }
+        } catch (SQLException e) {
+            // Обработка ошибок запроса
+            showErrorMessage("Ошибка при загрузке групп: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    public void update_button_func(ActionEvent actionEvent)
+    {
+
+
+    }
+
+    public void responce_all_data(String login, String password) throws SQLException
+    {
+
+        // Создаем объект Client с логином и паролем
+        Client client = new Client(login, password);
+
+        // Создаем запрос и сериализуем клиента в JSON
+        Request requestModel = new Request();
+        requestModel.setRequestMessage(new Gson().toJson(client)); // Сериализация клиента
+        requestModel.setRequestType(RequestType.SELECT_ADMINA); // Устанавливаем тип запроса как LOGIN
+
+        // Отправляем запрос на сервер
+        if (ClientSocket.getInstance() != null && ClientSocket.getInstance().getOut() != null)
+        {
+            ClientSocket.getInstance().getOut().println(new Gson().toJson(requestModel));
+            ClientSocket.getInstance().getOut().flush();
+            System.out.println("Запрос отправлен: " + new Gson().toJson(requestModel));
+        }
+        else
+        {
+            return;
+        }
+
+        // Получаем ответ от сервера
+        if (ClientSocket.getInstance() != null && ClientSocket.getInstance().getInStream() != null)
+        {
+            String serverResponse = null;
+            try
+            {
+                serverResponse = ClientSocket.getInstance().getInStream().readLine();
+            } catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+            if (serverResponse != null) {
+                // Выводим ответ от сервера в консоль для отладки
+                System.out.println("Ответ от сервера: " + serverResponse);
+
+                // Преобразуем ответ в объект Response
+                Response responseModel = new Gson().fromJson(serverResponse, Response.class);
+
+                // Если ответ успешный, десериализуем массив объектов Admin
+                if (responseModel.getResponseStatus() == ResponseStatus.OK) {
+                    // Десериализуем список администраторов
+                    List<AdminA> adminsList = new Gson().fromJson(responseModel.getResponseData(), new TypeToken<List<AdminA>>(){}.getType());
+
+
+                    // Логируем данные администраторов
+                    System.out.println("Список администраторов:");
+                    for (AdminA admin : adminsList) {
+                        System.out.println("ID: " + admin.getId() + ", Логин: " + admin.getLogin() + ", Пароль: " + admin.getPassword());
+                    }
+
+                } else {
+                    System.out.println("Ошибка при получении данных от сервера: " + responseModel.getResponseMessage());
+                }
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Метод для отображения ошибок (пример)
+    private void showErrorMessage(String message) {
+        // Здесь вы можете вывести сообщение в Alert или логи
+        System.out.println("Ошибка: " + message);
+    }
+
+
+
+//                                        Инициализация таблицы                                                 //
+    @FXML
+    public void initialize()
+    {
+        // Настройка столбцов таблицы
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("group_Id"));
+        fioColumn.setCellValueFactory(new PropertyValueFactory<>("FIO_"));
+        groupNumberColumn.setCellValueFactory(new PropertyValueFactory<>("group_number"));
+        rykColumn.setCellValueFactory(new PropertyValueFactory<>("ryk"));
+        //
+        // Task ID Column (update to use correct property name)
+        id_column_tasks.setCellValueFactory(new PropertyValueFactory<>("task_Id"));
+        // FIO Column
+        FIO_column_tasks.setCellValueFactory(new PropertyValueFactory<>("task_FIO"));
+        // Number Groups Column
+        number_groups_column_tasks.setCellValueFactory(new PropertyValueFactory<>("number_groups"));
+        // Supervisor (Ryk) Column
+        ryk_column_tasks.setCellValueFactory(new PropertyValueFactory<>("ryk_"));
+        // Works Column (task description)
+        work_column_tasks.setCellValueFactory(new PropertyValueFactory<>("works"));
+        // Status Column
+        status_column_tasks.setCellValueFactory(new PropertyValueFactory<>("status_works"));
+        // File Column (if you're displaying it somehow)
+        file_column_tasks.setCellValueFactory(new PropertyValueFactory<>("file"));
+        // Time File Column
+        time_file_column_tasks.setCellValueFactory(new PropertyValueFactory<>("time_file"));
+
+        //
+
+        // Task ID Column (update to use correct property name)
+        archive_id.setCellValueFactory(new PropertyValueFactory<>("task_Id"));
+        // FIO Column
+        archive_FIO.setCellValueFactory(new PropertyValueFactory<>("task_FIO"));
+        // Number Groups Column
+        archive_number_group.setCellValueFactory(new PropertyValueFactory<>("number_groups"));
+        // Supervisor (Ryk) Column
+        archive_ryk.setCellValueFactory(new PropertyValueFactory<>("ryk_"));
+        // Works Column (task description)
+        archive_work.setCellValueFactory(new PropertyValueFactory<>("works"));
+        // Status Column
+        archive_status.setCellValueFactory(new PropertyValueFactory<>("status_works"));
+        // File Column (if you're displaying it somehow)
+        archive_accepted.setCellValueFactory(new PropertyValueFactory<>("accepted_time"));
+        // Time File Column
+        archive_check.setCellValueFactory(new PropertyValueFactory<>("check_time"));
+
+//                                        Инициализация таблицы                                                 //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Устанавливаем начальное сообщение
+        report_report_choosebox.getItems().add("Выберите вид отчета");
+        // Добавляем другие элементы
+        report_report_choosebox.getItems().add("AreaChart");
+        report_report_choosebox.getItems().add("BarChart");
+        report_report_choosebox.getItems().add("BubbleChart");
+        report_report_choosebox.getItems().add("LineChart");
+        report_report_choosebox.getItems().add("PineChart");
+        // Устанавливаем начальное значение (это сообщение будет видно до того, как пользователь что-то выберет)
+        report_report_choosebox.setValue("Выберите вид отчета");
+        // Пример слушателя на выбор элемента (если нужно)
+        report_report_choosebox.setOnAction(event -> {
+            if (report_report_choosebox.getValue().equals("Выберите вид отчета")) {
+                // Если пользователь не выбрал вариант, можете вывести сообщение или что-то еще
+                System.out.println("Пожалуйста, выберите вид отчета.");
+            }
+        });
+    }
+
+
+
+    // Геттеры, если нужно
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    // Метод для установки ссылки на клиента
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+
+
+
+
+
+    @FXML
+    public void mydata_scene(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(true);
+        mydatapane1.setVisible(true);
+        mydatapane2.setVisible(false);
+        datagroupspane.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+
+    @FXML
+    public void group_edit(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(true);
+        mydatapane1.setVisible(false);
+        mydatapane2.setVisible(true);
+        datagroupspane.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+
+
+
+
+
+    @FXML
+    public void groups_scene(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(false);
+        datagroupspane.setVisible(true);
+        datagroupspane1.setVisible(true);
+        datagroupspane2.setVisible(false);
+        datagroupspane3.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+
+    @FXML
+    public void groups_delete_(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(false);
+        mydatapane1.setVisible(false);
+        mydatapane2.setVisible(false);
+        datagroupspane.setVisible(true);
+        datagroupspane1.setVisible(false);
+        datagroupspane2.setVisible(true);
+        datagroupspane3.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+
+    @FXML
+    public void groups_add_(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(false);
+        mydatapane1.setVisible(false);
+        mydatapane2.setVisible(false);
+        datagroupspane.setVisible(true);
+        datagroupspane1.setVisible(false);
+        datagroupspane2.setVisible(false);
+        datagroupspane3.setVisible(true);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+
+
+
+
+
+
+
+
+    @FXML
+    public void tasks_scene(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(false);
+        datagroupspane.setVisible(false);
+        taskspane.setVisible(true);
+        reportpane.setVisible(false);
+        archivepane.setVisible(false);
+    }
+
+    @FXML
+    public void report_scene(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(false);
+        datagroupspane.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(true);
+        archivepane.setVisible(false);
+    }
+
+    @FXML
+    public void archive_scene(ActionEvent actionEvent)
+    {
+        mydatapane.setVisible(false);
+        datagroupspane.setVisible(false);
+        taskspane.setVisible(false);
+        reportpane.setVisible(false);
+        archivepane.setVisible(true);
+    }
+
+
+
+    public void my_data_correct(ActionEvent actionEvent) {
+    }
+
+    public void my_data_quetion(ActionEvent actionEvent) {
+    }
+
+    public void my_data_chill(ActionEvent actionEvent) {
+    }
+
+    public void groups_sort_(ActionEvent actionEvent) {
+    }
+
+
+
+
+
+    public void tasks_sort_(ActionEvent actionEvent) {
+    }
+
+    public void tasks_add_(ActionEvent actionEvent) {
+    }
+
+    public void tasks_delete_(ActionEvent actionEvent) {
+    }
+
+
+    public Button getMenu_update_button() {
+        return menu_update_button;
+    }
+
+    public void setMenu_update_button(Button menu_update_button) {
+        this.menu_update_button = menu_update_button;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+}

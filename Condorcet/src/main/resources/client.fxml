@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Models.Entities.Controller">
+   <children>
+      <AnchorPane fx:id="client_pane" prefHeight="640.0" prefWidth="480.0" visible="false">
+         <children>
+            <ImageView fitHeight="644.0" fitWidth="482.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/authorization.jpg" />
+               </image>
+            </ImageView>
+            <Button accessibleRole="IMAGE_VIEW" alignment="TOP_CENTER" blendMode="COLOR_BURN" disable="true" focusTraversable="false" layoutX="68.0" layoutY="205.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="350.0" stylesheets="@../style/dashboardDesign.css" textFill="WHITE" wrapText="true">
+               <effect>
+                  <Lighting diffuseConstant="0.87" light="$null" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow blurType="GAUSSIAN" height="1.0" radius="0.0" width="0.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Shadow>
+                     </bumpInput>
+                  </Lighting>
+               </effect>
+               <styleClass>
+                  <String fx:value="close" />
+                  <String fx:value="textfield" />
+               </styleClass>
+            </Button>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="108.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JBank">
+               <font>
+                  <Font name="Baskerville Old Face" size="110.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="131.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello, User">
+               <font>
+                  <Font name="Baskerville Old Face" size="45.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="#fcf8f8" layoutX="297.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20 years together" wrappingWidth="141.16796875">
+               <font>
+                  <Font name="Baskerville Old Face" size="40.0" />
+               </font>
+            </Text>
+            <Text blendMode="EXCLUSION" fill="WHITE" layoutX="351.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@" wrappingWidth="13.560546875">
+               <font>
+                  <Font name="Baskerville Old Face" size="10.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="75.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please press the button to connect/disconnect to server /data" textAlignment="CENTER" wrappingWidth="336.61669921875">
+               <font>
+                  <Font name="Baskerville Old Face" size="30.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" disable="true" fill="WHITE" layoutX="81.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are not connected to the server" textAlignment="CENTER" visible="false" wrappingWidth="336.61669921875">
+               <font>
+                  <Font name="Baskerville Old Face" size="25.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="75.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have connected to the server" textAlignment="CENTER" visible="false" wrappingWidth="336.61669921875">
+               <font>
+                  <Font name="Baskerville Old Face" size="25.0" />
+               </font>
+            </Text>
+            <ProgressIndicator fx:id="progress_bar" layoutX="192.0" layoutY="360.0" maxHeight="400.0" maxWidth="400.0" prefHeight="138.0" prefWidth="115.0" progress="1.0" visible="false">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ProgressIndicator>
+            <Button fx:id="client_connect" blendMode="GREEN" cache="true" layoutX="108.0" layoutY="512.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="283.0" stylesheets="@../style/dashboardDesign.css" text="Connect">
+               <font>
+                  <Font name="Baskerville Old Face" size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="authorization_pane" prefHeight="640.0" prefWidth="480.0">
+         <children>
+            <ImageView fitHeight="644.0" fitWidth="482.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/authorization.jpg" />
+               </image>
+            </ImageView>
+            <Button accessibleRole="IMAGE_VIEW" alignment="TOP_CENTER" blendMode="COLOR_BURN" disable="true" focusTraversable="false" layoutX="68.0" layoutY="205.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="350.0" stylesheets="@../style/dashboardDesign.css" textFill="WHITE">
+               <effect>
+                  <Lighting diffuseConstant="0.87" light="$null" specularConstant="0.0" specularExponent="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow blurType="GAUSSIAN" height="1.0" radius="0.0" width="0.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Shadow>
+                     </bumpInput>
+                  </Lighting>
+               </effect>
+               <styleClass>
+                  <String fx:value="close" />
+                  <String fx:value="textfield" />
+               </styleClass>
+            </Button>
+            <Button fx:id="authorization_connect" blendMode="DIFFERENCE" cache="true" layoutX="101.0" layoutY="517.0" mnemonicParsing="false" onAction="#Login" prefHeight="45.0" prefWidth="283.0" stylesheets="@../style/dashboardDesign.css" text="Connect" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville Old Face" size="30.0" />
+               </font>
+            </Button>
+            <TextField fx:id="username_text" blendMode="EXCLUSION" layoutX="102.0" layoutY="314.0" prefHeight="45.0" prefWidth="283.0" promptText="Username">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="108.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JBank">
+               <font>
+                  <Font name="Baskerville Old Face" size="110.0" />
+               </font>
+            </Text>
+            <Text blendMode="OVERLAY" fill="WHITE" layoutX="6.0" layoutY="631.0" strokeType="OUTSIDE" strokeWidth="0.0" text="v.3.1.14 AI" wrappingWidth="214.0">
+               <font>
+                  <Font name="Baskerville Old Face" size="20.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="102.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome back!">
+               <font>
+                  <Font name="Baskerville Old Face" size="45.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="#fcf8f8" layoutX="297.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20 years together" wrappingWidth="141.16796875">
+               <font>
+                  <Font name="Baskerville Old Face" size="40.0" />
+               </font>
+            </Text>
+            <Text blendMode="EXCLUSION" fill="WHITE" layoutX="351.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@" wrappingWidth="13.560546875">
+               <font>
+                  <Font name="Baskerville Old Face" size="10.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="password_text" blendMode="EXCLUSION" layoutX="101.0" layoutY="396.0" prefHeight="45.0" prefWidth="283.0" promptText="Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </PasswordField>
+            <Label fx:id="labelMessage" layoutX="102.0" layoutY="460.0" minHeight="45.0" minWidth="283.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
