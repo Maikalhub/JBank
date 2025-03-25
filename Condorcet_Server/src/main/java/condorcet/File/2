@@ -1,0 +1,46 @@
+case UPDATE:
+                        // Выводим информацию о полученном запросе
+                        System.out.println("Данные переданы на сервер для обновления:");
+                        System.out.println(gson.toJson(request));  // Выводим сам запрос в формате JSON
+
+                        // Десериализация данных из запроса
+                        AdminA updatedAdminData = gson.fromJson(request.getRequestMessage(), AdminA.class);
+
+                        // Проверка данных после десериализации
+                        System.out.println("Десериализованные данные администратора:");
+                        System.out.println("ID: " + updatedAdminData.getId() + ", Логин: " + updatedAdminData.getLogin() + ", Пароль: " + updatedAdminData.getPassword());
+
+                        // Обновление данных администратора в базе данных
+                        boolean adminUpdated = adminAService.updateAdminA(updatedAdminData);
+
+                        // Выводим результат обновления
+                        System.out.println("Результат обновления администратора: " + (adminUpdated ? "Успешно" : "Ошибка"));
+
+                        // Создаем список всех администраторов после обновления
+                        List<AdminA> allAdmins = adminAService.getAllAdmins();
+
+                        // Проверка данных всех администраторов
+                        System.out.println("Список всех администраторов после обновления:");
+                        for (AdminA admins : allAdmins) {
+                            System.out.println("ID: " + admins.getId() + ", Логин: " + admins.getLogin() + ", Пароль: " + admins.getPassword());
+                        }
+
+                        // Преобразуем список администраторов в JSON
+                        String allAdminsJson = gson.toJson(allAdmins);
+
+                        // Формируем ответ с обновлением данных
+                        response = new Response(
+                                adminUpdated ? ResponseStatus.OK : ResponseStatus.ERROR,
+                                adminUpdated ? "Администратор обновлен успешно!" : "Ошибка при обновлении администратора",
+                                allAdminsJson
+                        );
+
+                        // Выводим сформированный ответ
+                        System.out.println("Отправляемый ответ:");
+                        System.out.println(gson.toJson(response));
+                        break;
+
+                    default:
+                        response = new Response(ResponseStatus.ERROR, "Неизвестный запрос", "");
+                        break;
+                }

@@ -1,0 +1,109 @@
+private void handleAddRequest(Request request)
+    {
+        switch (request.getRequestType())
+        {
+            case ADD_ADMINA:
+                AdminA newAdmin = gson.fromJson(request.getRequestMessage(), AdminA.class);
+                boolean adminAdded = adminAService.addAdminA(newAdmin);
+                response = new Response(adminAdded ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        adminAdded ? "Администратор добавлен успешно!" : "Ошибка при добавлении администратора", "");
+                break;
+
+            case ADD_USERA:
+                UserA newUser = gson.fromJson(request.getRequestMessage(), UserA.class);
+                boolean userAdded = userAService.addUserA(newUser);
+                response = new Response(userAdded ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        userAdded ? "Пользователь добавлен успешно!" : "Ошибка при добавлении пользователя", "");
+                break;
+
+            case ADD_ADMINID:
+                // Implement logic for adding AdminID
+                break;
+
+            case ADD_USERID:
+                // Implement logic for adding UserID
+                break;
+
+            case ADD_GROUP:
+                // Implement logic for adding Group
+                break;
+
+            case ADD_WORKS:
+                // Implement logic for adding Works
+                break;
+
+            default:
+                response = new Response(ResponseStatus.ERROR, "Неизвестный запрос", "");
+        }
+    }
+
+    private void handleEditRequest(Request request) {
+        switch (request.getRequestType()) {
+            case EDIT_ADMINA:
+                AdminA updatedAdmin = gson.fromJson(request.getRequestMessage(), AdminA.class);
+                boolean adminEdited = adminAService.editAdminA(updatedAdmin);
+                response = new Response(adminEdited ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        adminEdited ? "Администратор отредактирован успешно!" : "Ошибка при редактировании администратора", "");
+                break;
+
+            case EDIT_USERA:
+                UserA updatedUser = gson.fromJson(request.getRequestMessage(), UserA.class);
+                boolean userEdited = userAService.editUserA(updatedUser);
+                response = new Response(userEdited ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        userEdited ? "Пользователь отредактирован успешно!" : "Ошибка при редактировании пользователя", "");
+                break;
+
+            default:
+                response = new Response(ResponseStatus.ERROR, "Неизвестный запрос", "");
+        }
+    }
+
+    private void handleDeleteRequest(Request request) {
+        switch (request.getRequestType()) {
+            case DELETE_ADMINA:
+                int adminIdToDelete = gson.fromJson(request.getRequestMessage(), Integer.class);
+                boolean adminDeleted = adminAService.deleteAdminA(adminIdToDelete);
+                response = new Response(adminDeleted ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        adminDeleted ? "Администратор удален успешно!" : "Ошибка при удалении администратора", "");
+                break;
+
+            case DELETE_USERA:
+                int userIdToDelete = gson.fromJson(request.getRequestMessage(), Integer.class);
+                boolean userDeleted = userAService.deleteUserA(userIdToDelete);
+                response = new Response(userDeleted ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        userDeleted ? "Пользователь удален успешно!" : "Ошибка при удалении пользователя", "");
+                break;
+
+            case DELETE_GROUP:
+                // Implement logic for deleting Group
+                break;
+
+            case DELETE_WORKS:
+                // Implement logic for deleting Works
+                break;
+
+            default:
+                response = new Response(ResponseStatus.ERROR, "Неизвестный запрос", "");
+        }
+    }
+
+    private void handleUpdateRequest(Request request) {
+        switch (request.getRequestType()) {
+            case UPDATE_ADMINA:
+                AdminA updatedAdminData = gson.fromJson(request.getRequestMessage(), AdminA.class);
+                boolean adminUpdated = adminAService.updateAdminA(updatedAdminData);
+                response = new Response(adminUpdated ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        adminUpdated ? "Администратор обновлен успешно!" : "Ошибка при обновлении администратора", "");
+                break;
+
+            case UPDATE_USERA:
+                UserA updatedUserData = gson.fromJson(request.getRequestMessage(), UserA.class);
+                boolean userUpdated = userAService.updateUserA(updatedUserData);
+                response = new Response(userUpdated ? ResponseStatus.OK : ResponseStatus.ERROR,
+                        userUpdated ? "Пользователь обновлен успешно!" : "Ошибка при обновлении пользователя", "");
+                break;
+
+            default:
+                response = new Response(ResponseStatus.ERROR, "Неизвестный запрос", "");
+        }
+    }
