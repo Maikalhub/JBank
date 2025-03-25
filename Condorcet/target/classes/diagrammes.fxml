@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Models.Entities.Diagram">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/iCXVRY520.jpg" />
+         </image>
+      </ImageView>
+      <TabPane fx:id="tabpane" prefHeight="200.0" prefWidth="200.0" styleClass="nav-form" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="1">
+               <content>
+                  <AnchorPane fx:id="areachartpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AreaChart layoutX="55.0" layoutY="101.0" prefHeight="469.0" prefWidth="791.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </AreaChart>
+                        <Button fx:id="areachartpane_addfile" blendMode="OVERLAY" cache="true" layoutX="256.0" layoutY="570.0" mnemonicParsing="false" onAction="#areachartpane_addfile_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-добавить-файл-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                        </Button>
+                        <Button fx:id="areachartpane_clear" blendMode="OVERLAY" cache="true" layoutX="176.0" layoutY="570.0" mnemonicParsing="false" onAction="#areachartpane_clear_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-full-trash-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="areachartpane_back" blendMode="OVERLAY" cache="true" layoutX="773.0" layoutY="575.0" mnemonicParsing="false" onAction="#areachartpane_back_function" prefHeight="47.0" prefWidth="43.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-назад-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="areachartpane_backtoprogect" blendMode="OVERLAY" cache="true" layoutX="99.0" layoutY="570.0" mnemonicParsing="false" onAction="#areachartpane_backtoprogect_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-проект-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="   " blendMode="OVERLAY" cache="true" layoutX="769.0" layoutY="29.0" mnemonicParsing="false" onAction="#areachartpane_quetion_function" prefHeight="54.0" prefWidth="67.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fx:id="  " fitHeight="40.0" fitWidth="50.0" onDragDetected="#areachartpane_quetion_function" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-задать-вопрос-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Text layoutX="335.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AreaChart" textAlignment="CENTER">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="63.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.8317535545023697" radius="0.5">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.2822857201099396" green="0.3799999952316284" blue="0.19760000705718994" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Button fx:id="areachartpane_save" blendMode="OVERLAY" cache="true" layoutX="335.0" layoutY="570.0" mnemonicParsing="false" onAction="#areachartpane_save_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-downloads-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="2">
+               <content>
+                  <AnchorPane fx:id="barchartpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AreaChart layoutX="55.0" layoutY="101.0" prefHeight="469.0" prefWidth="791.0">
+                           <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis side="LEFT" />
+                           </yAxis>
+                        </AreaChart>
+                        <Button fx:id="barchartpane_addfile" blendMode="OVERLAY" cache="true" layoutX="256.0" layoutY="570.0" mnemonicParsing="false" onAction="#barchartpane_addfile_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-добавить-файл-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                        </Button>
+                        <Button fx:id="barchartpane_clear" blendMode="OVERLAY" cache="true" layoutX="176.0" layoutY="570.0" mnemonicParsing="false" onAction="#barchartpane_clear_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-full-trash-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="barchartpane_back" blendMode="OVERLAY" cache="true" layoutX="773.0" layoutY="575.0" mnemonicParsing="false" onAction="#barchartpane_back" prefHeight="47.0" prefWidth="43.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-назад-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="barchartpane_backtoprogect" blendMode="OVERLAY" cache="true" layoutX="99.0" layoutY="570.0" mnemonicParsing="false" onAction="#barchartpane_backtoprogect_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fx:id=" " fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-проект-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="barchartpane_quetion" blendMode="OVERLAY" cache="true" layoutX="769.0" layoutY="29.0" mnemonicParsing="false" onAction="#barchartpane_quetion_function" prefHeight="54.0" prefWidth="67.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-задать-вопрос-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Text layoutX="335.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BarChart" textAlignment="CENTER">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="63.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.8317535545023697" radius="0.5">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.2822857201099396" green="0.3799999952316284" blue="0.19760000705718994" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Button fx:id="barchartpane_save" blendMode="OVERLAY" cache="true" layoutX="335.0" layoutY="570.0" mnemonicParsing="false" onAction="#barchartpane_save_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-downloads-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+            <Tab text="3">
+               <content>
+                  <AnchorPane fx:id="uploadfilepane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="uploadfilepane_addfile" blendMode="OVERLAY" cache="true" layoutX="256.0" layoutY="570.0" mnemonicParsing="false" onAction="#uploadfilepane_addfile_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-добавить-файл-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                        </Button>
+                        <Button fx:id="uploadfilepane_clear" blendMode="OVERLAY" cache="true" layoutX="176.0" layoutY="570.0" mnemonicParsing="false" onAction="#uploadfilepane_clear_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-full-trash-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="uploadfilepane_back" blendMode="OVERLAY" cache="true" layoutX="773.0" layoutY="575.0" mnemonicParsing="false" onAction="#uploadfilepane_back_function" prefHeight="47.0" prefWidth="43.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-назад-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="uploadfilepane_backtoproject" blendMode="OVERLAY" cache="true" layoutX="99.0" layoutY="570.0" mnemonicParsing="false" onAction="#uploadfilepane_backtoproject_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-проект-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="uploadfilepane_quetion" blendMode="OVERLAY" cache="true" layoutX="769.0" layoutY="29.0" mnemonicParsing="false" onAction="#uploadfilepane_quetion_function" prefHeight="54.0" prefWidth="67.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-задать-вопрос-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Text layoutX="335.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload File" textAlignment="CENTER">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="63.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.5" centerY="0.8317535545023697" radius="0.5">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.2822857201099396" green="0.3799999952316284" blue="0.19760000705718994" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Button fx:id="uploadfilepane_save" blendMode="OVERLAY" cache="true" layoutX="335.0" layoutY="570.0" mnemonicParsing="false" onAction="#uploadfilepane_save_function" prefHeight="60.0" prefWidth="60.0" styleClass="update-btn" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/icons8-downloads-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <stylesheets>
+                              <URL value="@../style/dashboardDesign.css" />
+                              <URL value="@../style/loginDesign.css" />
+                           </stylesheets>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+         <stylesheets>
+            <URL value="@../style/loginDesign.css" />
+            <URL value="@../style/dashboardDesign.css" />
+         </stylesheets>
+      </TabPane>
+   </children>
+</StackPane>

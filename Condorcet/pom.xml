@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Основная информация о проекте -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Группа и артефакт проекта -->
+    <groupId>condorset</groupId>
+    <artifactId>Condorset_Server</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- Системы сборки -->
+    <packaging>jar</packaging>
+
+    <name>My Project</name>
+    <url>http://example.com</url>
+
+    <!-- Профили для различных сред -->
+    <profiles>
+        <profile>
+            <id>development</id>
+            <properties>
+                <maven.compiler.source>17.8</maven.compiler.source>
+                <maven.compiler.target>17.8</maven.compiler.target>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- Зависимости проекта -->
+    <dependencies>
+        <!-- JavaFX Dependencies -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.1</version>  <!-- Укажите актуальную версию -->
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17.0.1</version>  <!-- Укажите актуальную версию -->
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>17.0.1</version>  <!-- Укажите актуальную версию -->
+        </dependency>
+        <!-- Добавьте другие модули, если нужно (например, javafx-graphics) -->
+        <!-- Зависимость для JDBC драйвера Microsoft SQL Server -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.8.1.jre8</version>
+        </dependency>
+
+        <!-- Зависимость для Gson (работа с JSON) -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.8</version>
+        </dependency>
+
+        <!-- Зависимость для EHCache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.6</version>
+        </dependency>
+    </dependencies>
+
+    <!-- Плагины для сборки -->
+    <build>
+        <plugins>
+            <!-- Плагин для компиляции Java -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- Плагин для создания JAR-файла -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

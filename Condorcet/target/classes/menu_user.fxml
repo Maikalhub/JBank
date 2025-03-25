@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Models.Entities.User">
+   <children>
+      <AnchorPane prefHeight="800.0" prefWidth="1000.0">
+         <children>
+            <ImageView fitHeight="800.0" fitWidth="800.0" layoutX="201.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/menu.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="800.0" fitWidth="800.0" layoutX="200.0" opacity="0.25" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@image/iCXVRY520.jpg" />
+               </image>
+            </ImageView>
+            <Button accessibleRole="IMAGE_VIEW" layoutX="10.0" layoutY="509.0" minHeight="88.0" minWidth="100.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="181.0" styleClass="table-view">
+               <stylesheets>
+                  <URL value="@../style/loginDesign.css" />
+                  <URL value="@../style/dashboardDesign.css" />
+               </stylesheets>
+            </Button>
+            <Button accessibleRole="IMAGE_VIEW" layoutX="11.0" layoutY="188.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" prefHeight="211.0" prefWidth="181.0" styleClass="table-view">
+               <stylesheets>
+                  <URL value="@../style/loginDesign.css" />
+                  <URL value="@../style/dashboardDesign.css" />
+               </stylesheets>
+            </Button>
+            <Button accessibleRole="IMAGE_VIEW" layoutX="11.0" layoutY="712.0" minHeight="60.0" minWidth="100.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" styleClass="table-view">
+               <stylesheets>
+                  <URL value="@../style/loginDesign.css" />
+                  <URL value="@../style/dashboardDesign.css" />
+               </stylesheets>
+            </Button>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="67.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actions" wrappingWidth="65.390625">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="24.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="65.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" wrappingWidth="71.1181640625">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="24.0" />
+               </font>
+            </Text>
+            <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="64.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version" wrappingWidth="71.1181640625">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="47.0" layoutY="737.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3.14.4563 Portable" textAlignment="CENTER" wrappingWidth="104.4140625">
+               <font>
+                  <Font name="Yu Gothic UI Semilight" size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="datagroups" blendMode="DIFFERENCE" cache="true" layoutX="21.0" layoutY="196.0" mnemonicParsing="false" onAction="#groups_scene" prefHeight="40.0" prefWidth="160.0" stylesheets="@../style/dashboardDesign.css" text="   Группа" textAlignment="CENTER">
+               <font>
+                  <Font name="Yu Gothic UI Semilight" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-групповой-звонок-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="tasks" blendMode="DIFFERENCE" cache="true" layoutX="20.0" layoutY="246.0" mnemonicParsing="false" onAction="#tasks_scene" prefHeight="40.0" prefWidth="160.0" stylesheets="@../style/dashboardDesign.css" text="   Задачи" textAlignment="CENTER">
+               <font>
+                  <Font name="Yu Gothic UI Semilight" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-todo-list-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="report" blendMode="DIFFERENCE" cache="true" layoutX="20.0" layoutY="296.0" mnemonicParsing="false" onAction="#report_scene" prefHeight="40.0" prefWidth="160.0" stylesheets="@../style/dashboardDesign.css" text="   Отчеты">
+               <font>
+                  <Font name="Yu Gothic UI Semilight" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-документы-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="archive" blendMode="DIFFERENCE" cache="true" layoutX="20.0" layoutY="346.0" mnemonicParsing="false" onAction="#archive_scene" prefHeight="40.0" prefWidth="160.0" stylesheets="@../style/dashboardDesign.css" text="     Архив">
+               <font>
+                  <Font name="Yu Gothic UI Semilight" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-архив-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="exit" blendMode="DIFFERENCE" cache="true" layoutX="130.0" layoutY="533.0" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="40.0" styleClass="white-bg" stylesheets="@../style/dashboardDesign.css" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans MT" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-logout-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="update" blendMode="DIFFERENCE" cache="true" layoutX="21.0" layoutY="533.0" mnemonicParsing="false" onAction="#update" prefHeight="40.0" prefWidth="40.0" styleClass="white-bg" stylesheets="@../style/dashboardDesign.css" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans MT" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-доступные-обновления-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="quetion" blendMode="DIFFERENCE" layoutX="77.0" layoutY="533.0" mnemonicParsing="false" onAction="#quetion" prefHeight="40.0" prefWidth="40.0">
+               <stylesheets>
+                  <URL value="@../style/loginDesign.css" />
+                  <URL value="@../style/dashboardDesign.css" />
+               </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-задать-вопрос-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <AnchorPane fx:id="mainpane" layoutX="200.0" layoutY="100.0" prefHeight="700.0" prefWidth="800.0">
+               <children>
+                  <AnchorPane fx:id="mydatapane" prefHeight="700.0" prefWidth="800.0" visible="false">
+                     <children>
+                        <AnchorPane fx:id="mydatapane1" prefHeight="700.0" prefWidth="800.0">
+                           <children>
+                              <Button fx:id="mydatapane1_back" layoutX="717.0" layoutY="613.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" visible="false">
+                                 <stylesheets>
+                                    <URL value="@../style/loginDesign.css" />
+                                    <URL value="@../style/dashboardDesign.css" />
+                                 </stylesheets>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/icons8-u---образная-стрелка-влево-48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="240.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Мои данные">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane1_login" editable="false" layoutX="115.0" layoutY="278.0" prefHeight="30.0" prefWidth="250.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text fx:id="mydatapane1_fio" blendMode="DIFFERENCE" fill="WHITE" layoutX="185.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Цыриков Михаил Андреевич" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="40.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="202.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane1_password" editable="false" layoutX="115.0" layoutY="378.0" prefHeight="30.0" prefWidth="250.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="194.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane1_salary" editable="false" layoutX="115.0" layoutY="478.0" prefHeight="30.0" prefWidth="250.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="183.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зарплата">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane1_post" editable="false" layoutX="445.0" layoutY="278.0" prefHeight="30.0" prefWidth="250.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="507.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Должность">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane1_status" editable="false" layoutX="445.0" layoutY="378.0" prefHeight="30.0" prefWidth="250.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="529.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane1_numbergroups" editable="false" layoutX="445.0" layoutY="478.0" prefHeight="30.0" prefWidth="250.0">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="486.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер группы">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="mydatapane1_addscene" cache="true" layoutX="492.0" layoutY="583.0" mnemonicParsing="false" onAction="#mydatapane1_addscene_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Добавить данные" textFill="WHITE">
+                                 <font>
+                                    <Font name="Yu Gothic UI Semilight" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="mydatapane1_editscene" cache="true" layoutX="160.0" layoutY="583.0" mnemonicParsing="false" onAction="#mydatapane1_editscene_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Изменить данные" textFill="WHITE">
+                                 <font>
+                                    <Font name="GOST Common Italic" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="mydatapane2" prefHeight="700.0" prefWidth="800.0" visible="false">
+                           <children>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="152.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Изменение данных">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane2_login" editable="false" layoutX="103.0" layoutY="323.0" prefHeight="30.0" prefWidth="250.0" promptText="Логин">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Text fx:id="fio1" blendMode="DIFFERENCE" fill="WHITE" layoutX="284.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите данные">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="40.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="202.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane2_password" layoutX="103.0" layoutY="423.0" prefHeight="30.0" prefWidth="250.0" promptText="Пароль">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="194.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane2_salary" layoutX="103.0" layoutY="523.0" prefHeight="30.0" prefWidth="250.0" promptText="Зарплата">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="183.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зарплата">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane2_post" layoutX="433.0" layoutY="323.0" prefHeight="30.0" prefWidth="250.0" promptText="Должность">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="507.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Должность">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane2_status" layoutX="433.0" layoutY="423.0" prefHeight="30.0" prefWidth="250.0" promptText="Статус">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="529.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="mydatapane2_numbergroups" layoutX="433.0" layoutY="523.0" prefHeight="30.0" prefWidth="250.0" promptText="Номер группы">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="486.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер группы">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="mydatapane2_confirm" cache="true" layoutX="492.0" layoutY="583.0" mnemonicParsing="false" onAction="#mydatapane2_confirm_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Подтвердить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Yu Gothic UI Semilight" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="mydatapane2_clear" cache="true" layoutX="160.0" layoutY="583.0" mnemonicParsing="false" onAction="#mydatapane2_clear_fuction" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Очистить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Yu Gothic UI Semilight" size="20.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="mydatapane2_fio" layoutX="275.0" layoutY="235.0" prefHeight="30.0" prefWidth="250.0" promptText="ФИО">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="374.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="datagroupspane" prefHeight="700.0" prefWidth="800.0" visible="false">
+                     <children>
+                        <AnchorPane fx:id="datagroupspane1" prefHeight="700.0" prefWidth="800.0" visible="false">
+                           <children>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="197.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Данные группы">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                                 </font>
+                              </Text>
+                              <TableView fx:id="datagroupspane_table" editable="true" layoutX="101.0" layoutY="149.0" prefHeight="386.0" prefWidth="600.0" styleClass="left-form" tableMenuButtonVisible="true">
+                                 <columns>
+                                    <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="fioColumn" minWidth="3.0" prefWidth="304.0" text="ФИО" />
+                                    <TableColumn fx:id="groupNumberColumn" minWidth="0.0" prefWidth="233.0" text="НомерГруппы" />
+                                    <TableColumn fx:id="rykColumn" minWidth="0.0" prefWidth="0.0" text="Руководитель" visible="false" />
+                                 </columns>
+                                 <stylesheets>
+                                    <URL value="@../style/loginDesign.css" />
+                                    <URL value="@../style/dashboardDesign.css" />
+                                 </stylesheets>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="taskspane" prefHeight="700.0" prefWidth="800.0">
+                     <children>
+                        <AnchorPane fx:id="taskspane1" prefHeight="700.0" prefWidth="800.0">
+                           <children>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="296.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Задачи">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="taskspane1_edit" cache="true" layoutX="430.0" layoutY="578.0" mnemonicParsing="false" onAction="#taskpane1_edit_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Изменить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gill Sans MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="taskspane1_add" cache="true" layoutX="162.0" layoutY="578.0" mnemonicParsing="false" onAction="#taskpane1_add_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Добавить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gill Sans MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <TableView fx:id="taskspane_table" layoutX="79.0" layoutY="119.0" prefHeight="414.0" prefWidth="629.0">
+                                 <columns>
+                                    <TableColumn fx:id="id_column_tasks" minWidth="0.0" prefWidth="36.0" text="ID" />
+                                    <TableColumn fx:id="FIO_column_tasks" minWidth="0.0" prefWidth="200.0" text="ФИО" />
+                                    <TableColumn fx:id="number_groups_column_tasks" prefWidth="100.0" text="НомерГруппы" />
+                                    <TableColumn fx:id="ryk_column_tasks" minWidth="0.0" prefWidth="0.0" text="Руководитель" visible="false" />
+                                    <TableColumn fx:id="work_column_tasks" minWidth="0.0" prefWidth="114.0" text="Работа" />
+                                    <TableColumn fx:id="status_column_tasks" minWidth="0.0" prefWidth="179.0" text="СтатусРаботы" />
+                                    <TableColumn fx:id="file_column_tasks" minWidth="0.0" prefWidth="0.0" text="Принято" visible="false" />
+                                    <TableColumn fx:id="time_file_column_tasks" minWidth="0.0" prefWidth="0.0" text="Время загрузки" visible="false" />
+                                 </columns>
+                                 <styleClass>
+                                    <String fx:value="left-form" />
+                                    <String fx:value="left-form" />
+                                 </styleClass>
+                                 <stylesheets>
+                                    <URL value="@../style/loginDesign.css" />
+                                    <URL value="@../style/dashboardDesign.css" />
+                                 </stylesheets>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="taskspane2" layoutX="-14.0" prefHeight="700.0" prefWidth="800.0" visible="false">
+                           <children>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="169.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Изменить данные" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="taskspane2_confirm" cache="true" layoutX="434.0" layoutY="586.0" mnemonicParsing="false" onAction="#taskpane2_confirm_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Подтвердить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gill Sans MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="taskspane2_clear" cache="true" layoutX="176.0" layoutY="586.0" mnemonicParsing="false" onAction="#taskspane2_clear_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Очистить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gill Sans MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="taskspane2_fio" editable="false" layoutX="133.0" layoutY="287.0" prefHeight="40.0" prefWidth="200.0" promptText="ФИО">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane2_numbergroups" editable="false" layoutX="133.0" layoutY="376.0" prefHeight="40.0" prefWidth="200.0" promptText="Номер группы">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane2_ryk" editable="false" layoutX="334.0" layoutY="211.0" prefHeight="40.0" prefWidth="200.0" promptText="Руководитель">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane2_work" layoutX="536.0" layoutY="287.0" prefHeight="40.0" prefWidth="200.0" promptText="Работа">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane2_statuswork" layoutX="536.0" layoutY="378.0" prefHeight="40.0" prefWidth="200.0" promptText="Статус работы">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane2_acceptedtime" editable="false" layoutX="133.0" layoutY="470.0" prefHeight="40.0" prefWidth="200.0" promptText="Дата">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane2_checktime" editable="false" layoutX="536.0" layoutY="470.0" prefHeight="40.0" prefWidth="200.0" promptText="Дата">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="207.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="151.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер Группы" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="357.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Руководитель" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="592.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Работа" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="556.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус Работы" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="186.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Принято" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="566.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Проверено" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="taskspane3" prefHeight="700.0" prefWidth="800.0" visible="false">
+                           <children>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="167.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добавить данные" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="taskspane3_confirm" cache="true" layoutX="434.0" layoutY="586.0" mnemonicParsing="false" onAction="#taskpane3_confirm_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Подтвердить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gill Sans MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="taskspane3_clear" cache="true" layoutX="176.0" layoutY="586.0" mnemonicParsing="false" onAction="#taskspane3_clear_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Очистить" textFill="WHITE">
+                                 <font>
+                                    <Font name="Gill Sans MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="taskspane3_fio" layoutX="104.0" layoutY="242.0" prefHeight="40.0" prefWidth="200.0" promptText="ФИО">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane3_numbergroups" layoutX="104.0" layoutY="332.0" prefHeight="40.0" prefWidth="200.0" promptText="Номер">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane3_ryk" layoutX="298.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" promptText="Руководитель">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane3_work" layoutX="491.0" layoutY="239.0" prefHeight="40.0" prefWidth="200.0" promptText="Работа">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane3_statuswork" layoutX="490.0" layoutY="330.0" prefHeight="40.0" prefWidth="200.0" promptText="Статус работы">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane3_acceptedtime" layoutX="103.0" layoutY="431.0" prefHeight="40.0" prefWidth="200.0" promptText="Дата">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <TextField fx:id="taskspane3_checktime" layoutX="485.0" layoutY="435.0" prefHeight="40.0" prefWidth="200.0" promptText="Дата">
+                                 <font>
+                                    <Font name="Yu Gothic UI Regular" size="20.0" />
+                                 </font></TextField>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="177.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ФИО" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="122.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер Группы" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="320.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Руководитель" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="545.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Работа" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="510.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Статус Работы" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="156.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Принято" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="522.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Проверено" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="reportpane" prefHeight="700.0" prefWidth="800.0" visible="false">
+                     <children>
+                        <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="307.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчеты">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="70.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="reportpane_fio" layoutX="461.0" layoutY="274.0" prefHeight="40.0" prefWidth="200.0" promptText="ФИО для выбоки данных">
+                           <font>
+                              <Font name="Yu Gothic UI Regular" size="15.0" />
+                           </font></TextField>
+                        <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="191.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите ФИО">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="reportpane_add" cache="true" layoutX="201.0" layoutY="564.0" mnemonicParsing="false" onAction="#reportpane_add_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Создать" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="reportpane_clear" cache="true" layoutX="486.0" layoutY="564.0" mnemonicParsing="false" onAction="#reportpane_clear_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Очистить" textFill="WHITE">
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                        </Button>
+                        <ChoiceBox fx:id="reportpane_choosebox" accessibleText="Выберите вид отчета" layoutX="461.0" layoutY="473.0" prefHeight="40.0" prefWidth="200.0" />
+                        <TextField fx:id="reportpane_numbergroups" layoutX="461.0" layoutY="374.0" prefHeight="40.0" prefWidth="200.0" promptText="Номер группы для выборки данных">
+                           <font>
+                              <Font size="15.0" />
+                           </font></TextField>
+                        <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="191.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер группы">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                           </font>
+                        </Text>
+                        <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="276.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите данные">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="40.0" />
+                           </font>
+                        </Text>
+                        <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="191.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вид отчета">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="archivepane" prefHeight="700.0" prefWidth="800.0" visible="false">
+                     <children>
+                        <Text blendMode="DIFFERENCE" fill="WHITE" layoutX="332.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Архив">
+                           <font>
+                              <Font name="Franklin Gothic Medium Cond" size="50.0" />
+                           </font>
+                        </Text>
+                        <TableView fx:id="archivepane_table" layoutX="33.0" layoutY="158.0" prefHeight="396.0" prefWidth="728.0" styleClass="left-form">
+                           <columns>
+                              <TableColumn fx:id="archive_id" prefWidth="34.0" text="ID" />
+                              <TableColumn fx:id="archive_FIO" prefWidth="86.0" text="ФИО" />
+                              <TableColumn fx:id="archive_number_group" prefWidth="94.0" text="НомерГруппы" />
+                              <TableColumn fx:id="archive_ryk" prefWidth="87.0" text="Руководитель" />
+                              <TableColumn fx:id="archive_work" prefWidth="79.0" text="Работа" />
+                              <TableColumn fx:id="archive_status" prefWidth="136.0" text="СтатусРаботы" />
+                              <TableColumn fx:id="archive_accepted" prefWidth="96.0" text="Принято" />
+                              <TableColumn fx:id="archive_check" prefWidth="116.0" text="Проверено" />
+                           </columns>
+                           <stylesheets>
+                              <URL value="@../style/loginDesign.css" />
+                              <URL value="@../style/dashboardDesign.css" />
+                           </stylesheets>
+                        </TableView>
+                        <Button fx:id="archivepane_back" cache="true" layoutX="332.0" layoutY="606.0" mnemonicParsing="false" onAction="#archivepane_back_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Вернуть" textFill="WHITE">
+                           <font>
+                              <Font name="Yu Gothic UI Semilight" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="archivepane_delete" cache="true" layoutX="78.0" layoutY="606.0" mnemonicParsing="false" onAction="#archivepane_delete_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Удалить" textFill="WHITE">
+                           <font>
+                              <Font name="Yu Gothic UI Semilight" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="archivepane_add" cache="true" layoutX="583.0" layoutY="606.0" mnemonicParsing="false" onAction="#archivepane_add_function" prefHeight="60.0" prefWidth="151.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" text="Добавить" textFill="WHITE">
+                           <font>
+                              <Font name="Yu Gothic UI Semilight" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Button accessibleRole="IMAGE_VIEW" blendMode="DARKEN" layoutX="-250.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="507.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" />
+            <Button accessibleRole="IMAGE_VIEW" blendMode="MULTIPLY" cacheShape="false" centerShape="false" focusTraversable="false" mnemonicParsing="false" prefHeight="100.0" prefWidth="1000.0" scaleShape="false" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" />
+            <Text fill="WHITE" layoutX="11.0" layoutY="72.0" nodeOrientation="LEFT_TO_RIGHT" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="JBank" wrappingWidth="181.0">
+               <font>
+                  <Font name="Baskerville Old Face" size="70.0" />
+               </font>
+            </Text>
+            <Button fx:id="mydata" blendMode="DIFFERENCE" cache="true" layoutX="942.0" layoutY="25.0" mnemonicParsing="false" onAction="#mydata_scene" prefHeight="40.0" prefWidth="40.0" styleClass="update-btn" stylesheets="@../style/dashboardDesign.css" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans MT" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@image/icons8-пользователь-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="update1" blendMode="DIFFERENCE" cache="true" layoutX="866.0" layoutY="25.0" mnemonicParsing="false" onAction="#update" prefHeight="40.0" prefWidth="40.0" styleClass="update-btn" textFill="WHITE">
+               <font>
+                  <Font name="Gill Sans MT" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/icons8-help-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <stylesheets>
+                  <URL value="@../style/dashboardDesign.css" />
+                  <URL value="@../style/loginDesign.css" />
+               </stylesheets>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
